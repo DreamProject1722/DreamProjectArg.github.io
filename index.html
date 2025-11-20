@@ -168,7 +168,27 @@ body {
     margin: 20px auto;
     animation: glowPulse 2s infinite alternate;
 }
-    
+   <script>
+function animateNumber(elementId, start, end, duration) {
+    const element = document.getElementById(elementId);
+    let startTime = null;
+
+    function step(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.textContent = value.toLocaleString() + " DPJ";
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+
+    requestAnimationFrame(step);
+}
+
+// Ejecutar animación al cargar la página
+animateNumber("floatingNumber", 0, 1000000000000, 4000);
+</script> 
 @keyframes glowPulse {
     0% { text-shadow: 0 0 10px #00ffff, 0 0 20px #c400ff, 0 0 30px #00ffff; }
     100% { text-shadow: 0 0 20px #00ffff, 0 0 40px #c400ff, 0 0 60px #00ffff; }
