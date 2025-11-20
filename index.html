@@ -1,22 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <meta charset="UTF-8">
 <title>DreamProject</title>
 
-<!-- FUENTE FUTURISTA -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+<!-- FUENTES FUTURISTAS -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Audiowide&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- ICONOS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 /* ----------------- BODY ----------------- */
 body {
     margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at top, #5a00ff, #050016 70%);
-    color: Dark Purple;
+    font-family: 'Exo 2', sans-serif;
+    background: radial-gradient(circle at top, #050016, #5a00ff);
+    color: white;
     overflow-x: hidden;
 }
 
@@ -29,7 +32,6 @@ body {
     top: 0;
     left: 0;
     pointer-events: none;
-    background: transparent;
 }
 .particle {
     position: absolute;
@@ -49,7 +51,7 @@ body {
 .panel {
     position: relative;
     z-index: 10;
-    max-width: 500px;
+    max-width: 900px;
     margin: 80px auto;
     padding: 30px;
     border-radius: 15px;
@@ -62,8 +64,9 @@ body {
 
 /* ----------------- LOGO NEON ----------------- */
 .logo-neon {
-    font-size: 50px;
-    font-weight: 500;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
     background: linear-gradient(90deg, #00aaff, #c400ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -73,7 +76,8 @@ body {
 
 /* ----------------- CONTADOR GLOBAL ----------------- */
 .contador {
-    font-size: 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
     padding: 15px 25px;
     color: white;
     background: linear-gradient(90deg, #0084ff, #ae00ff);
@@ -89,6 +93,7 @@ body {
     padding: 15px 30px;
     font-size: 18px;
     font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: cyan;
     border: 2px solid cyan;
     border-radius: 12px;
@@ -127,11 +132,29 @@ body {
     box-shadow: 0 0 25px #00ffff, 0 0 40px #c400ff;
 }
 .project-card h3 {
+    font-family: 'Orbitron', sans-serif;
     margin: 10px 0;
     font-size: 18px;
 }
 .project-card p {
     font-size: 14px;
+}
+
+/* ----------------- NUMERO FLOTANTE ----------------- */
+.floating-number {
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #00ffff;
+    text-align: center;
+    text-shadow: 0 0 10px #00ffff,0 0 20px #c400ff,0 0 30px #00ffff;
+    margin: 20px auto;
+    animation: glowPulse 2s infinite alternate;
+}
+@keyframes glowPulse {
+    0% { text-shadow: 0 0 10px #00ffff, 0 0 20px #c400ff, 0 0 30px #00ffff; }
+    100% { text-shadow: 0 0 20px #00ffff, 0 0 40px #c400ff, 0 0 60px #00ffff; }
 }
 
 /* ----------------- REJILLA 3D ----------------- */
@@ -173,7 +196,6 @@ body {
     color: #5a00ff;
     text-shadow: 0 0 10px cyan;
 }
-
 </style>
 </head>
 
@@ -192,6 +214,8 @@ body {
         <button class="btn-explore">Explorar</button>
     </div>
 
+    <div class="floating-number">1,000,000,000,000 DPJ</div>
+
     <div class="projects">
         <div class="project-card">
             <h3>Proyecto 1</h3>
@@ -206,11 +230,21 @@ body {
             <p>Descripción breve del proyecto 3.</p>
         </div>
     </div>
+
+    <!-- GRAFICO DISTRIBUCION INICIAL -->
+    <canvas id="distributionChart" width="400" height="400" style="margin-top:25px;"></canvas>
 </div>
 
 <!-- REJILLA 3D -->
 <div class="grid-3d"></div>
 
+<!-- PANEL INFERIOR -->
+<div class="bottom-panel">
+    <a href="#">Info</a>
+    <a href="#">Proyectos</a>
+    <a href="#">Contacto</a>
+    <a href="#">Roadmap</a>
+    <a href="#">Extras</a>
 </div>
 
 <!-- JS: CONTADOR GLOBAL -->
@@ -244,189 +278,62 @@ for(let i=0;i<numParticles;i++){
 }
 </script>
 
-</body>
-</html>
-
-</style>
-</head>
-
-<body>
-
-<div class="bg-lines"></div>
-
-<div class="panel">
-    <h1>DreamProject</h1>
-
-</div>
-
-<!-- CONTADOR GLOBAL REAL -->
+<!-- JS: GRAFICO DISTRIBUCION INICIAL -->
 <script>
-fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
-  .then(r => r.json())
-  .then(data => {
-      document.getElementById("contadorGlobal").textContent =
-          "Visitas Globales: " + data.value;
-  })
-  .catch(() => {
-      document.getElementById("contadorGlobal").textContent =
-          "No se pudo cargar el contador.";
-  });
+const ctx = document.getElementById('distributionChart').getContext('2d');
+const distributionChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [
+            'Fondo comunitario (40%)',
+            'Liquidez (20%)',
+            'Desarrollo (15%)',
+            'Staking/recompensas (10%)',
+            'Marketing & alianzas (10%)',
+            'Equipo (5%)'
+        ],
+        datasets: [{
+            label: 'Distribución inicial DPJ',
+            data: [40, 20, 15, 10, 10, 5],
+            backgroundColor: [
+                'rgba(0, 170, 255, 0.7)',
+                'rgba(196, 0, 255, 0.7)',
+                'rgba(0, 255, 255, 0.7)',
+                'rgba(255, 0, 255, 0.7)',
+                'rgba(0, 100, 255, 0.7)',
+                'rgba(255, 50, 255, 0.7)'
+            ],
+            borderColor: [
+                '#00aaff',
+                '#c400ff',
+                '#00ffff',
+                '#ff00ff',
+                '#0064ff',
+                '#ff32ff'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    color: 'cyan',
+                    font: { family: 'Orbitron', size: 14 }
+                }
+            },
+            tooltip: {
+                bodyColor: 'white',
+                backgroundColor: 'rgba(10,0,40,0.8)',
+                titleColor: '#00ffff'
+            }
+        }
+    }
+});
 </script>
 
 </body>
 </html>
 
-<html lang="es">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dream Project — Haz que los sueños sucedan</title>
-  <link rel="icon" href="assets/dream_project_logo_64.png">
-  <style>
-    :root{--dream-blue:#4A7BFF;--hope-purple:#8B5CFF;--gold:#F7C948;--dark:#111116;--bg:#F5F6FA}
-    body{font-family:Inter, Arial, sans-serif;margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:var(--dark)}
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--dream-blue),var(--hope-purple));display:flex;align-items:center;justify-content:center}
-    main{padding:36px 28px;max-width:1100px;margin:0 auto}
-    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center}
-    .card{background:white;border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(17,17,22,0.06)}
-    footer{padding:20px 28px;text-align:center;color:#666}
-    @media(max-width:900px){.hero{grid-template-columns:1fr}}
-  </style>
-</head>
-   
-<body>
-  <header>
-    <div class="brand">
-      <div class="logo"><img src="assets/dream_project_logo_128.png" alt="logo" style="width:42px;height:42px"></div>
-      <div>
-        <strong style="font-size:18px">Dream Project</strong><br>
-        <small style="color:#666">Token DPJ • Red Solana</small>
-      </div>
-    </div>
-    <nav>
-      <a href="#about">Sobre</a> • <a href="#how">Cómo funciona</a> • <a href="#tokenomics">Tokenomics</a>
-    </nav>
-  </header>
-  <main>
-    <section class="hero">
-      <div>
-        <h1>Tu sueño merece una oportunidad. Nosotros le damos una.</h1>
-        <p>Dream Project (DPJ) es un fondo descentralizado en Solana que financia microproyectos y sueños personales alrededor del mundo. Transparencia, gobernanza comunitaria y velocidad para transformar ideas en realidades.</p>
-        <p><a href="#tokenomics" style="background:linear-gradient(90deg,var(--dream-blue),var(--hope-purple));color:white;padding:12px 18px;border-radius:10px;text-decoration:none">Únete a la comunidad</a></p>
-      </div>
-      <div class="card">
-        <h3>Lanzamiento</h3>
-        <p><strong>Token:</strong> DPJ<br><strong>Red:</strong> Solana</p>
-        <p><strong>Supply:</strong> 1,000,000,000,000 DPJ</p>
-      </div>
-    </section>
-
-    <section id="about" style="margin-top:28px">
-      <h2>Sobre Dream Project</h2>
-      <p>Dream Project nació para dar herramientas a quienes tienen una idea y no cuentan con recursos. No financiamos unicornios; financiamos sueños cotidianos: talleres, herramientas, estudios, microemprendimientos y proyectos comunitarios.</p>
-    </section>
-
-    <section id="how" style="margin-top:20px">
-      <h2>Cómo funciona</h2>
-      <ol>
-        <li>Publica tu proyecto con descripción y presupuesto.</li>
-        <li>La comunidad lo analiza y vota.</li>
-        <li>Proyectos seleccionados reciben fondos en DPJ o stablecoins.</li>
-        <li>Se verifica la ejecución y se publican resultados.</li>
-      </ol>
-    </section>
-
-    <section id="tokenomics" style="margin-top:20px">
-       <canvas id="distributionChart" width="400" height="400" style="margin-top:25px;"></canvas>
-   <div class="card distribution-card" style=.distribution-card {
- 
-}
-  <h4>Distribución inicial</h4>
-  <ul>
-    <li>40% Fondo comunitario</li>
-    <li>20% Liquidez</li>
-    <li>15% Desarrollo</li>
-    <li>10% Staking/recompensas</li>
-    <li>10% Marketing & alianzas</li>
-    <li>5% Equipo (lock 24 meses)</li>
-  </ul>
-</div>
-      </div>
-    </section>
-
-<script>
-fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
-  .then(response => response.json())
-  .then(data => {
-      document.getElementById("contadorGlobal").textContent =
-          "Visitas globales: " + data.value;
-  })
-  .catch(() => {
-      document.getElementById("contadorGlobal").textContent =
-          "No se pudo cargar el contador.";
-  });
-</script>
-<!-- WIDGET DE REDES SOCIALES CON ICONOS -->
-<style>
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.social-icons a {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 22px;
-  transition: 0.3s;
-}
-
-/* Colores oficiales */
-.tw    { background: #1DA1F2; }
-.ig    { background: #E4405F; }
-.yt    { background: #FF0000; }
-
-/* Hover */
-.social-icons a:hover {
-  transform: scale(1.15);
-  opacity: 0.85;
-}
-</style>
-
-<div class="social-icons">
-  <a class="tw" href="https://twitter.com/TU_USUARIO" target="_blank"><i class="fab fa-twitter"></i></a>
-  <a class="ig" href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a class="yt" href="https://youtube.com/@TU_USUARIO" target="_blank"><i class="fab fa-youtube"></i></a>
-</div>
-
-
-
-    <section style="margin-top:28px">
-      <h2>Roadmap</h2>
-      <div class="card">
-        <strong>Año 1:</strong> Lanzamiento token, MVP, primeros 200 proyectos evaluados (50 financiados).<br>
-        <strong>Año 2:</strong> Escala, alianzas, 10k proyectos evaluados.<br>
-        <strong>Año 3:</strong> Gobernanza totalmente descentralizada, expansión internacional.
-      </div>
-    </section>
-
-    <section style="margin-top:28px" class="card">
-      <h3>Contacto</h3>
-      <p>Contacto: contacto@dreamproject.com.ar</p>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Dream Project — Haz que los sueños sucedan • Red Solana
-  </footer>
-</body>
-</html>
