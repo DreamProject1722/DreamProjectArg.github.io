@@ -157,27 +157,6 @@ body {
 /* ----------------- NUMERO FLOTANTE ----------------- */
 .floating-number 
     <div id="floatingNumber" class="floating-number">0 DPJ</div>
-
-    <script>
-function animateNumber(elementId, start, end, duration) {
-    const element = document.getElementById(elementId);
-    let startTime = null;
-
-    function step(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-        element.textContent = value.toLocaleString() + " DPJ";
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
-
-    requestAnimationFrame(step);
-}
-
-// Ejecutar animación al cargar la página
-animateNumber("floatingNumber", 0, 1000000000000, 9000); // 9 segundos
 </script>{
     position: relative;
     font-family: 'Orbitron', sans-serif;
