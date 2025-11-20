@@ -357,17 +357,45 @@ fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
           <p>1,000,000,000,000 DPJ</p>
         </div>
           <canvas id="miGrafico" width="400" height="200" style="margin-top:25px;"></canvas>
-       <div class="card" style="flex:1;min-width:220px">
-          <h4>Distribución inicial</h4>
-          <ul>
-            <li>40% Fondo comunitario</li>
-            <li>20% Liquidez</li>
-            <li>15% Desarrollo</li>
-            <li>10% Staking/recompensas</li>
-            <li>10% Marketing & alianzas</li>
-            <li>5% Equipo (lock 24 meses)</li>
-          </ul>
-        </div>
+       <div class="card distribution-card" style=.distribution-card {
+    background: linear-gradient(135deg, #00aaff, #c400ff); /* azul eléctrico → morado neon */
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 15px #00aaff, 0 0 25px #c400ff;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.distribution-card h4 {
+    margin-top: 0;
+    font-size: 18px;
+    text-shadow: 0 0 5px #00aaff, 0 0 10px #c400ff;
+}
+
+.distribution-card ul {
+    padding-left: 20px;
+}
+
+.distribution-card li {
+    margin-bottom: 8px;
+}
+
+/* Hover futurista */
+.distribution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px #00ffff, 0 0 40px #c400ff;
+}
+
+  <h4>Distribución inicial</h4>
+  <ul>
+    <li>40% Fondo comunitario</li>
+    <li>20% Liquidez</li>
+    <li>15% Desarrollo</li>
+    <li>10% Staking/recompensas</li>
+    <li>10% Marketing & alianzas</li>
+    <li>5% Equipo (lock 24 meses)</li>
+  </ul>
+</div>
       </div>
     </section>
 
