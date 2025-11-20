@@ -1,5 +1,7 @@
 <!doctype html>
 <html lang="es">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -60,39 +62,6 @@
       </ol>
     </section>
 
-    <!-- WIDGET DE REDES SOCIALES -->
-<style>
-.social-widget {
-  display: flex;
-  gap: 15px;
-  margin: 15px 0;
-}
-.social-widget a {
-  text-decoration: none;
-  color: purple;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-family: sans-serif;
-  font-size: 15px;
-  transition: 0.3s;
-}
-.facebook   { background: #1877F2; }
-.twitter    { background: #1DA1F2; }
-.instagram  { background: #E4405F; }
-.youtube    { background: #FF0000; }
-.social-widget a:hover {
-  opacity: 0.8;
-}
-</style>
-
-<div class="social-widget">
-  <a class="facebook" href="https://facebook.com/TU_USUARIO" target="_blank">Facebook</a>
-  <a class="twitter" href="https://twitter.com/TU_USUARIO" target="_blank">Twitter</a>
-  <a class="instagram" href="https://instagram.com/TU_USUARIO" target="_blank">Instagram</a>
-  <a class="youtube" href="https://youtube.com/@TU_USUARIO" target="_blank">YouTube</a>
-</div>
-
-
     <section id="tokenomics" style="margin-top:20px">
       <h2>Tokenomics</h2>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
@@ -132,6 +101,47 @@ fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
           "No se pudo cargar el contador.";
   });
 </script>
+<!-- WIDGET DE REDES SOCIALES CON ICONOS -->
+<style>
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.social-icons a {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+/* Colores oficiales */
+.fb    { background: #1877F2; }
+.tw    { background: #1DA1F2; }
+.ig    { background: #E4405F; }
+.yt    { background: #FF0000; }
+.tt    { background: #000000; }
+
+/* Hover */
+.social-icons a:hover {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
+</style>
+
+<div class="social-icons">
+  <a class="fb" href="https://facebook.com/TU_USUARIO" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a class="tw" href="https://twitter.com/TU_USUARIO" target="_blank"><i class="fab fa-twitter"></i></a>
+  <a class="ig" href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a class="yt" href="https://youtube.com/@TU_USUARIO" target="_blank"><i class="fab fa-youtube"></i></a>
+  <a class="tt" href="https://tiktok.com/@TU_USUARIO" target="_blank"><i class="fab fa-tiktok"></i></a>
+</div>
 
 
 
