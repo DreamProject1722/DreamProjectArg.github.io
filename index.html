@@ -228,26 +228,6 @@ body {
 
     <div class="floating-number">1,000,000,000,000 DPJ</div>
        <script>
-function animateNumber(elementId, start, end, duration) {
-    const element = document.getElementById(elementId);
-    let startTime = null;
-
-    function step(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-        element.textContent = value.toLocaleString() + " DPJ";
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
-
-    requestAnimationFrame(step);
-}
-
-// Ejecutar animación al cargar la página
-animateNumber("floatingNumber", 0, 1000000000000, 4000);
-</script> 
 
     <div class="projects">
         <div class="project-card">
