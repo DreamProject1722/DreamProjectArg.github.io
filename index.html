@@ -114,27 +114,25 @@
       </div>
     </section>
 
-    <!-- CONTADOR DE VISITAS -->
-<div id="contador" style="font-size:18px; font-family:sans-serif; margin:10px 0;">
-  Cargando visitas...
+ <!-- CONTADOR GLOBAL REAL -->
+<div id="contadorGlobal" 
+     style="font-size:18px; font-family:sans-serif; margin:10px 0;">
+  Cargando visitas globales...
 </div>
 
 <script>
-// Contador local (a nivel del navegador)
-let visitas = localStorage.getItem("visitasDreamProject");
-
-if (!visitas) {
-    visitas = 1;
-} else {
-    visitas = parseInt(visitas) + 1;
-}
-
-localStorage.setItem("visitasDreamProject", visitas);
-
-// Mostrar
-document.getElementById("contador").textContent = 
-    "Número de visitas en este dispositivo: " + visitas;
+fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
+  .then(response => response.json())
+  .then(data => {
+      document.getElementById("contadorGlobal").textContent =
+          "Visitas globales: " + data.value;
+  })
+  .catch(() => {
+      document.getElementById("contadorGlobal").textContent =
+          "No se pudo cargar el contador.";
+  });
 </script>
+
 
 
     <section style="margin-top:28px">
