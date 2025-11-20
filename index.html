@@ -7,70 +7,252 @@
 
 <!-- FUENTE FUTURISTA -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Orbitron', sans-serif;
-        background: radial-gradient(circle at top, #5a00ff, #050016 70%);
-        color: white;
-        overflow-x: hidden;
-    }
+/* ----------------- BODY ----------------- */
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #5a00ff, #050016 70%);
+    color: white;
+    overflow-x: hidden;
+}
 
-    /* Animación de fondo futurista */
-    .bg-lines {
-        position: fixed;
-        inset: 0;
-        background: repeating-linear-gradient(
-            to bottom,
-            rgba(0, 255, 255, 0.1) 0px,
-            rgba(0, 255, 255, 0.05) 2px,
-            transparent 4px
-        );
-        animation: moveLines 8s linear infinite;
-        pointer-events: none;
-        z-index: 0;
-    }
-    @keyframes moveLines {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(20px); }
-    }
+/* ----------------- PARTICULAS FLOTANTES ----------------- */
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background: transparent;
+}
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: cyan;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: move 10s linear infinite;
+}
+@keyframes move {
+    0% {transform: translateY(0) translateX(0);}
+    100% {transform: translateY(-100vh) translateX(50vw);}
+}
 
-    /* Panel principal */
-    .panel {
-        position: relative;
-        z-index: 10;
-        max-width: 500px;
-        margin: 80px auto;
-        padding: 25px;
-        border-radius: 15px;
-        text-align: center;
-        background: rgba(10, 0, 40, 0.5);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 25px 5px rgba(120, 0, 255, 0.6);
-        border: 1px solid rgba(130, 0, 255, 0.4);
-    }
+/* ----------------- PANEL PRINCIPAL ----------------- */
+.panel {
+    position: relative;
+    z-index: 10;
+    max-width: 700px;
+    margin: 80px auto;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    background: rgba(10, 0, 40, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(120, 0, 255, 0.6);
+    border: 1px solid rgba(130, 0, 255, 0.4);
+}
 
-    h1 {
-        font-size: 38px;
-        background: linear-gradient(90deg, #00aaff, #c400ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-        text-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
-    }
+/* ----------------- LOGO NEON ----------------- */
+.logo-neon {
+    font-size: 50px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00aaff, #c400ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px #00aaff, 0 0 20px #c400ff, 0 0 30px #00aaff;
+    margin-bottom: 20px;
+}
 
-    /* Contador global */
-    .contador {
-        font-size: 24px;
-        padding: 12px 20px;
-        color: white;
-        background: linear-gradient(90deg, #0084ff, #ae00ff);
-        border-radius: 12px;
-        box-shadow: 0 0 20px rgba(170, 0, 255, 0.7);
-        display: inline-block;
-        margin-top: 15px;
-    }
+/* ----------------- CONTADOR GLOBAL ----------------- */
+.contador {
+    font-size: 24px;
+    padding: 15px 25px;
+    color: white;
+    background: linear-gradient(90deg, #0084ff, #ae00ff);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(170,0,255,0.7);
+    display: inline-block;
+    margin: 15px 0;
+}
+
+/* ----------------- BOTON ANIMADO ----------------- */
+.btn-explore {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: cyan;
+    border: 2px solid cyan;
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px cyan;
+}
+.btn-explore:hover {
+    color: #5a00ff;
+    background: cyan;
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #c400ff;
+    transform: scale(1.1);
+}
+
+/* ----------------- TARJETAS PROYECTOS ----------------- */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+.project-card {
+    background: rgba(20,0,60,0.5);
+    border-radius: 15px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 15px #00aaff, 0 0 25px #c400ff;
+    transition: 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #00ffff, 0 0 40px #c400ff;
+}
+.project-card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.project-card p {
+    font-size: 14px;
+}
+
+/* ----------------- REJILLA 3D ----------------- */
+.grid-3d {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,170,255,0.1),
+        rgba(0,170,255,0.1) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    transform: perspective(400px) rotateX(60deg);
+    z-index: 1;
+}
+
+/* ----------------- PANEL INFERIOR ----------------- */
+.bottom-panel {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(10,0,40,0.8);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 15px rgba(120,0,255,0.6);
+}
+.bottom-panel a {
+    color: cyan;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.bottom-panel a:hover {
+    color: #5a00ff;
+    text-shadow: 0 0 10px cyan;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PARTICULAS -->
+<div class="particles" id="particles"></div>
+
+<!-- PANEL PRINCIPAL -->
+<div class="panel">
+    <div class="logo-neon">DreamProject</div>
+
+    <div id="contadorGlobal" class="contador">Cargando visitas...</div>
+
+    <div>
+        <button class="btn-explore">Explorar</button>
+    </div>
+
+    <div class="projects">
+        <div class="project-card">
+            <h3>Proyecto 1</h3>
+            <p>Descripción breve del proyecto 1.</p>
+        </div>
+        <div class="project-card">
+            <h3>Proyecto 2</h3>
+            <p>Descripción breve del proyecto 2.</p>
+        </div>
+        <div class="project-card">
+            <h3>Proyecto 3</h3>
+            <p>Descripción breve del proyecto 3.</p>
+        </div>
+    </div>
+</div>
+
+<!-- REJILLA 3D -->
+<div class="grid-3d"></div>
+
+<!-- PANEL INFERIOR -->
+<div class="bottom-panel">
+    <a href="#">Info</a>
+    <a href="#">Proyectos</a>
+    <a href="#">Contacto</a>
+    <a href="#">Roadmap</a>
+    <a href="#">Extras</a>
+</div>
+
+<!-- JS: CONTADOR GLOBAL -->
+<script>
+fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
+  .then(r => r.json())
+  .then(data => {
+      document.getElementById("contadorGlobal").textContent =
+          "Visitas Globales: " + data.value;
+  })
+  .catch(() => {
+      document.getElementById("contadorGlobal").textContent =
+          "No se pudo cargar el contador.";
+  });
+</script>
+
+<!-- JS: PARTICULAS FLOTANTES -->
+<script>
+const particlesContainer = document.getElementById('particles');
+const numParticles = 80;
+for(let i=0;i<numParticles;i++){
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    p.style.top = Math.random()*100 + 'vh';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.width = (2+Math.random()*3)+'px';
+    p.style.height = p.style.width;
+    p.style.animationDuration = (5+Math.random()*10)+'s';
+    p.style.opacity = 0.3 + Math.random()*0.7;
+    particlesContainer.appendChild(p);
+}
+</script>
+
+</body>
+</html>
+
 </style>
 </head>
 
