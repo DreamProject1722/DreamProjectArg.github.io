@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="es">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <meta charset="UTF-8">
 <title>DreamProject</title>
 
@@ -354,7 +356,8 @@ fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
           <h4>Supply total</h4>
           <p>1,000,000,000,000 DPJ</p>
         </div>
-        <div class="card" style="flex:1;min-width:220px">
+          <canvas id="miGrafico" width="400" height="200" style="margin-top:25px;"></canvas>
+       <div class="card" style="flex:1;min-width:220px">
           <h4>Distribución inicial</h4>
           <ul>
             <li>40% Fondo comunitario</li>
@@ -440,7 +443,7 @@ fetch("https://api.countapi.xyz/hit/dreamproject/visitas")
 
     <section style="margin-top:28px" class="card">
       <h3>Contacto</h3>
-      <p>Contacto: contacto@dreamproject.org</p>
+      <p>Contacto: contacto@dreamproject.com.ar</p>
     </section>
   </main>
 
