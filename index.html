@@ -81,6 +81,29 @@
       </div>
     </section>
 
+    <!-- CONTADOR DE VISITAS -->
+<div id="contador" style="font-size:18px; font-family:sans-serif; margin:10px 0;">
+  Cargando visitas...
+</div>
+
+<script>
+// Contador local (a nivel del navegador)
+let visitas = localStorage.getItem("visitasDreamProject");
+
+if (!visitas) {
+    visitas = 1;
+} else {
+    visitas = parseInt(visitas) + 1;
+}
+
+localStorage.setItem("visitasDreamProject", visitas);
+
+// Mostrar
+document.getElementById("contador").textContent = 
+    "Número de visitas en este dispositivo: " + visitas;
+</script>
+
+
     <section style="margin-top:28px">
       <h2>Roadmap</h2>
       <div class="card">
